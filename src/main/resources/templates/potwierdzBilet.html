@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Potwierdź dane do biletu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark navbar-expand-md bg-navbar">
+
+    <a class="navbar-brand" href="/"><img src="https://www.pinclipart.com/picdir/big/108-1082951_entertaining-stories-train-icon-clipart.png" width="30" height="30" class="d-inline-block mr-1 align-bottom" alt="">Koleje.pl</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainmenu">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/bilet/trasa">Kup bilet</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/trasy">Zobacz trasy</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/sprawdzPolaczenia">Sprawdź połączenia</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-1">
+            <li class="nav-item active mr-1">
+                <a class="nav-link" href="/mojeKonto">Moje konto</a>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>
+<section class="panel">
+    <div class="container">
+        <header>
+            <h2>Potwierdź dane do biletu</h2>
+
+        </header>
+        <div class="d-flex justify-content-center">
+            Trasa: &nbsp <b th:text="${nazwaTrasy}"></b>
+        </div>
+        <div class="d-flex justify-content-center">
+            Odjazd z przystanku: &nbsp<b th:text="${nazwaPrzysPocz}"></b> - <b th:text="${dataOdjazdu}"></b>
+        </div>
+        <div class="d-flex justify-content-center">
+            Przyjazd na przystanek &nbsp <b th:text="${nazwaPrzysKon}"></b> - <b th:text="${dataPrzyjazdu}"></b>
+        </div>
+        <h3 class="d-flex justify-content-center">
+            Dane osobowe pasażera
+        </h3>
+        <div class="d-flex justify-content-center">
+            Imię i nazwisko: &nbsp<b th:text="${klient.imie}"></b> <b th:text="${klient.nazwisko}"></b>
+        </div>
+        <div class="d-flex justify-content-center">
+            PESEL: &nbsp<b th:text="${klient.PESEL}"></b>
+        </div>
+        <div class="d-flex justify-content-center">
+            Adres email: &nbsp<b th:text="${klient.email}"></b><br/>
+        </div>
+        <div class="d-flex justify-content-center">
+            <form action="/bilet/ok" method="post" th:object="${nowyBilet}">
+
+                <input type="submit" value="Potwierdź" class="btn btn-primary">
+
+                <input type="hidden" th:field="${nowyBilet.trasaID}" th:value="${nowyBilet.trasaID}">
+                <input type="hidden" th:field="${nowyBilet.przystanekPoczatkowy}" th:value="${nowyBilet.przystanekPoczatkowy}">
+                <input type="hidden" th:field="${nowyBilet.przystanekKoncowy}" th:value="${nowyBilet.przystanekKoncowy}" >
+                <input type="hidden" th:field="${nowyBilet.klientId}" th:value="${nowyBilet.klientId}">
+                <input type="hidden" th:field="${nowyBilet.odjazdId}" th:value="${nowyBilet.odjazdId}">
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

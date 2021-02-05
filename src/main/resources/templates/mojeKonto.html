@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Moje konto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark navbar-expand-md bg-navbar">
+
+    <a class="navbar-brand" href="/"><img src="https://www.pinclipart.com/picdir/big/108-1082951_entertaining-stories-train-icon-clipart.png" width="30" height="30" class="d-inline-block mr-1 align-bottom" alt="">Koleje.pl</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainmenu">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/bilet/trasa">Kup bilet</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/trasy">Zobacz trasy</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/sprawdzPolaczenia">Sprawdź połączenia</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-1">
+            <li class="nav-item active mr-1">
+                <a class="nav-link" href="/mojeKonto">Moje konto</a>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>
+
+
+<section class="panel">
+    <div class="container">
+        <header>
+            <h2>Moje konto</h2>
+        </header>
+        <!--<div class="row "> -->
+            <div class="d-flex justify-content-center">
+                <h3>Moje dane osobowe:</h3>
+            </div>
+            <div class="d-flex justify-content-center ">
+                Imię: &nbsp <b th:text="${klient.imie}">...</b>
+            </div>
+            <div class="d-flex justify-content-center ">
+                Nazwisko: &nbsp<b th:text="${klient.nazwisko}">...</b>
+            </div>
+            <div class="d-flex justify-content-center ">
+                PESEL: &nbsp<b th:text="${klient.PESEL}">...</b>
+            </div>
+            <div class="d-flex justify-content-center ">
+                Numer telefonu: &nbsp<b th:text="${klient.nrTelefonu}">...</b>
+            </div>
+            <div class="d-flex justify-content-center ">
+                Adres: &nbsp<b th:text="${klient.miejscowosc}">...</b> <b th:text="${klient.nrDomu}">...</b>
+            </div>
+            <div class="d-flex justify-content-center ">
+                Kod pocztowy: &nbsp<b th:text="${klient.kodPocztowy}">...</b> <b th:text="${klient.miejscowosc}">...</b><br/>
+            </div><br/>
+
+            <div class="d-flex justify-content-center">
+                <a href="/mojeKonto/edytuj"><button class="btn btn-primary">Edytuj dane osobowe</button></a>
+            </div><br/>
+            <div class="d-flex justify-content-center">
+                <a href="/mojeKonto/zmianaHasla"><button class="btn btn-primary">Zmień hasło</button></a>
+            </div><br/>
+            <div class="d-flex justify-content-center">
+                <a href="/bilety/moje"><button class="btn btn-primary">Zobacz swoje bilety</button></a>
+            </div><br/>
+            <div class="d-flex justify-content-center">
+                <form method="POST" th:action="@{/logout}">
+                    <input type="submit" value="Logout" class="btn btn-danger"/>
+                </form>
+            </div>
+
+
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodawanie administratora do bazy</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+
+</head>
+<body>
+<nav class="navbar navbar-dark navbar-expand-md bg-navbar">
+
+    <a class="navbar-brand" href="/"><img src="https://www.pinclipart.com/picdir/big/108-1082951_entertaining-stories-train-icon-clipart.png" width="30" height="30" class="d-inline-block mr-1 align-bottom" alt="">Koleje.pl</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainmenu">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/bilet/trasa">Kup bilet</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/trasy">Zobacz trasy</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/sprawdzPolaczenia">Sprawdź połączenia</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-1">
+            <li class="nav-item active mr-1">
+                <a class="nav-link" href="/mojeKonto">Moje konto</a>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>
+<section class="addForm">
+    <div class="container">
+        <header>
+            <h2> Dodawanie nowego administratora </h2>
+        </header>
+
+        <form method="POST" th:object="${nowyKlient}" action="/rejestracjaAdmin">
+
+            <div class="form-group">
+                <label for="exampleImie"> Imię: </label>
+                <input type="text" th:field="${nowyKlient.imie}" value="" class="form-control" placeholder="Podaj imię" id="exampleImie" pattern="[A-Za-z]{2,}"
+                       title="Imię składa się tylko z liter" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleNazwisko"> Nazwisko: </label>
+                <input type="text" th:field="${nowyKlient.nazwisko}" value="" class="form-control" placeholder="Podaj nazwisko" id="exampleNazwisko" pattern="[A-Za-z]){2,}"
+                       title="Nazwisko składa się tylko z liter" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="examplePESEL"> PESEL: </label>
+                <input type="text" th:field="${nowyKlient.PESEL}" value="" class="form-control" placeholder="Podaj PESEL" id="examplePESEL" pattern="^\d{11}$"
+                       title="Podaj prawidłowy PESEL" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleNumer"> Numer telefonu: </label>
+                <input type="text" th:field="${nowyKlient.nrTelefonu}" value="" class="form-control" placeholder="Podaj numer telefonu" id="exampleNumer" pattern="^\d{9}$"
+                       title="Podaj prawidlowy numer telefonu" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleKod"> Kod pocztowy: </label>
+                <input type="text" th:field="${nowyKlient.kodPocztowy}" value="" class="form-control" placeholder="Podaj kod pocztowy" id="exampleKod" pattern="^\d{2}-\d{3}$"
+                       title="Podaj kod pocztowy w formacie XX-XXX" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleMiejscowosc"> Miejscowość: </label>
+                <input type="text" th:field="${nowyKlient.miejscowosc}" value="" class="form-control" placeholder="Podaj miejscowość" id="exampleMiejscowosc" pattern="[A-Za-z]{2,}"
+                       title="Miejscowość składa się tylko z liter"  required/>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleUlica"> Ulica i numer budynku: </label>
+                <input type="text" th:field="${nowyKlient.nrDomu}" value="" class="form-control" placeholder="Podaj ulicę i numer budynku" id="exampleUlica" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleEmail"> Email: </label>
+                <input type="email" th:field="${nowyKlient.email}" value="" class="form-control" placeholder="Podaj adres email" id="exampleEmail" required/>
+            </div>
+
+
+            <div class="form-group">
+                <label> Hasło </label>:
+                <input type="password" th:field="${nowyKlient.haslo}" value="" class="form-control" placeholder="Podaj hasło" id="exampleHaslo" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                       title="Musi składać się z min.8 znaków oraz zawierać co najmniej jedną małą literę, jedną dużą literę i znak specjalny" required/>
+            </div>
+
+            <input type="submit" value="Dodaj administratora" class="btn btn-primary"/>
+
+
+        </form>
+
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

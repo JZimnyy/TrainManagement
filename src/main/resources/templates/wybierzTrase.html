@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wybierz trasę</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark navbar-expand-md bg-navbar">
+
+    <a class="navbar-brand" href="/"><img src="https://www.pinclipart.com/picdir/big/108-1082951_entertaining-stories-train-icon-clipart.png" width="30" height="30" class="d-inline-block mr-1 align-bottom" alt="">Koleje.pl</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainmenu">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/bilet/trasa">Kup bilet</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/trasy">Zobacz trasy</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/sprawdzPolaczenia">Sprawdź połączenia</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-1">
+            <li class="nav-item active mr-1">
+                <a class="nav-link" href="/mojeKonto">Moje konto</a>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>
+
+<section class="panel">
+    <div class="container">
+        <header>
+            <h2>Zakup biletu. Wybierz trasę.</h2>
+        </header>
+        <form method="POST" th:object="${nowyBilet}" action="/bilet/trasa/przystanki">
+
+            <div class="form-group">
+            <label for="exampleTrasa">Wybierz trasę:</label>
+            <select th:field="${nowyBilet.trasaID}" id="exampleTrasa" class="custom-select" required>
+                <option selected disabled value="">Wybierz trasę</option>
+                <option th:each="t :${listaTras}" th:value="${t.trasaId}" th:text="${t.nazwaTrasy}"></option>
+            </select>
+            </div>
+            <input type="submit" value="Wybierz" class="btn btn-primary"/>
+        </form>
+    </div>
+</section>
+</body>
+</html>
